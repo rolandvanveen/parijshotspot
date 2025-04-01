@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points Chaudes de Paris pour les filles</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <button id="sidebarToggle" class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Points Chaudes de Paris pour les filles</h2>
+                <button class="close-sidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="marker-list-section">
+                    <h3>Ontdek Parijs</h3>
+                    <div class="sort-controls">
+                        <select id="sortBy">
+                            <option value="wijk">Sorteer op wijk</option>
+                            <option value="type">Sorteer op type</option>
+                            <option value="name">Sorteer op naam</option>
+                        </select>
+                    </div>
+                    <div id="markerList" class="marker-list"></div>
+                </div>
+                <div class="filter-section">
+                    <h3>Filter op type</h3>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterMuseum" checked>
+                        <label for="filterMuseum">Musea</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterRestaurant" checked>
+                        <label for="filterRestaurant">Restaurants</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterHotel" checked>
+                        <label for="filterHotel">Hotels</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterAttraction" checked>
+                        <label for="filterAttraction">Bezienswaardigheden</label>
+                    </div>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filterOther" checked>
+                        <label for="filterOther">Anders</label>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="addMarker">+ Voeg nieuwe plek toe</button>
+                </div>
+                <div id="markerForm" class="markerForm hidden">
+                    <h3>Nieuwe plek toevoegen</h3>
+                    <input type="text" id="markerWijk" placeholder="Wijk" required>
+                    <input type="text" id="markerName" placeholder="Naam" required>
+                    <select id="markerType">
+                        <option value="museum">Museum</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="attraction">Bezienswaardigheid</option>
+                        <option value="other">Anders</option>
+                    </select>
+                    <textarea id="markerNote" placeholder="Bijzonderheden"></textarea>
+                    <div class="button-group">
+                        <button id="saveMarker">Opslaan</button>
+                        <button id="cancelMarker">Annuleren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

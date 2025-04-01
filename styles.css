@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', Arial, sans-serif;
+    overflow: hidden;
+    background-color: #fff5f7;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+}
+
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background-color: #ff69b4;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-toggle i {
+    font-size: 20px;
+    color: white;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #fff;
+    border-right: 2px solid #ffb6c1;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+    padding: 15px;
+    background-color: #ff69b4;
+    border-bottom: 2px solid #ffb6c1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h2 {
+    font-size: 18px;
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.close-sidebar {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #fff5f7;
+}
+
+#map {
+    flex: 1;
+    height: 100%;
+}
+
+.controls {
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#addMarker {
+    background-color: #ffb6c1;
+    font-size: 12px;
+    padding: 6px 12px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+#addMarker:hover {
+    background-color: #ff69b4;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.markerForm {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 2px solid #ffb6c1;
+    margin-top: 20px;
+}
+
+.markerForm h3 {
+    color: #ff69b4;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.markerForm input,
+.markerForm select,
+.markerForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 2px solid #ffb6c1;
+    border-radius: 15px;
+    font-size: 14px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.markerForm textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.markerForm input:focus,
+.markerForm select:focus,
+.markerForm textarea:focus {
+    outline: none;
+    border-color: #ff69b4;
+    box-shadow: 0 0 5px rgba(255,105,180,0.3);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#saveMarker {
+    background-color: #ff69b4;
+    color: white;
+}
+
+#saveMarker:hover {
+    background-color: #ff1493;
+    transform: translateY(-2px);
+}
+
+#cancelMarker {
+    background-color: #ffb6c1;
+    color: white;
+}
+
+#cancelMarker:hover {
+    background-color: #ff69b4;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none;
+}
+
+.marker-list-section {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 2px solid #ffb6c1;
+}
+
+.marker-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.marker-list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: #fff5f7;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 1px solid #ffb6c1;
+    cursor: pointer;
+}
+
+.marker-list-item:hover {
+    background-color: #ffe4e8;
+    transform: translateX(5px);
+}
+
+.marker-list-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+}
+
+.marker-list-info {
+    flex: 1;
+}
+
+.marker-list-info strong {
+    display: block;
+    font-size: 14px;
+    color: #ff69b4;
+}
+
+.marker-wijk {
+    font-size: 12px;
+    color: #ff1493;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.marker-type {
+    font-size: 12px;
+    color: #ff69b4;
+}
+
+.delete-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #ff4444;
+    transform: scale(1.1);
+}
+
+/* Aanpassing voor de popup delete button */
+.leaflet-popup-content .delete-btn {
+    width: auto;
+    height: auto;
+    padding: 4px 8px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* Mobiele aanpassingen */
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 300px;
+        transform: translateX(-100%);
+        z-index: 999;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .close-sidebar {
+        display: block;
+    }
+
+    .sidebar-content {
+        padding: 15px;
+    }
+
+    .marker-list {
+        max-height: 200px;
+    }
+
+    /* Aanpassingen voor touch interfaces */
+    .custom-marker {
+        touch-action: none;
+    }
+
+    .leaflet-popup-content {
+        padding: 10px;
+    }
+
+    .leaflet-popup-content .delete-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* Verbeterde touch targets */
+    button, select, input, textarea {
+        min-height: 44px;
+        padding: 8px 12px;
+    }
+
+    .filter-checkbox {
+        padding: 8px 0;
+    }
+
+    .marker-list-item {
+        padding: 12px;
+    }
+}
+
+/* Voorkom dat de kaart scrollt op mobiel */
+.leaflet-container {
+    touch-action: none;
+}
+
+/* Voeg cursor styling toe voor het plaatsen van markers */
+.leaflet-container.marker-placement-mode {
+    cursor: crosshair !important;
+}
+
+/* Verwijder de hand cursor van de kaart tijdens marker plaatsing */
+.leaflet-container.marker-placement-mode .leaflet-interactive {
+    cursor: crosshair !important;
+}
+
+.sort-controls {
+    margin-bottom: 15px;
+}
+
+.sort-controls select {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ffb6c1;
+    border-radius: 15px;
+    font-size: 14px;
+    background-color: white;
+    color: #ff69b4;
+}
+
+.custom-marker {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-marker:hover {
+    transform: scale(1.2);
+}
+
+.marker-note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    word-break: break-word;
+}
+
+.marker-note a {
+    color: #ff69b4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.marker-note a:hover {
+    color: #ff1493;
+    text-decoration: underline;
+}
+
+/* Popup styling voor links */
+.leaflet-popup-content a {
+    color: #ff69b4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.leaflet-popup-content a:hover {
+    color: #ff1493;
+    text-decoration: underline;
+} 
